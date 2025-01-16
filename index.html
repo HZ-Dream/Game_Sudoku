@@ -19,7 +19,44 @@
 </head>
 <body>
     <!-- Start Nav -->
-     
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                Sudoku
+            </a>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="bx bxs-sun"></i>
+                <i class="bx bxs-moon"></i>
+            </div>
+        </div>
+    </nav>
     <!-- End Nav  -->
+
+    <!-- Start Main -->
+    <div class="main">
+        <div class="screen">
+            <!-- Start sceen -->
+            <div class="start-screen active" id="start-screen">
+                <input type="text" placeholder="Your Name" maxlength="12" class="input-name" id="input-name" spellcheck="false">
+                <div class="btn" id="btn-level">
+                    Easy
+                </div>
+                <div class="btn" id="btn-continue">
+                    Continue
+                </div>
+                <div class="btn btn-blue" id="btn-play">New Game</div>
+            </div>
+            <!-- End screen -->
+
+            <!-- Start game screen -->
+            <div class="main-game">
+                
+            </div>
+            <!-- End game screen -->
+        </div>
+    </div>
+    <!-- End Main -->
+    <script src="./js/constant.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
