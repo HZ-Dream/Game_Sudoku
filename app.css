@@ -67,7 +67,6 @@ ul {
     list-style-type: none;
 }
 
-/* Navbar CSS */
 nav {
     background-color: var(--bg-body);
     color: var(--color-txt);
@@ -82,8 +81,8 @@ nav {
     max-width: 1280px;
     margin: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 40px;
     height: var(--nav-size);
 }
@@ -94,8 +93,8 @@ nav {
 }
 
 .dark-mode-toggle {
-    font-size: var(--font-size-lg);
     color: var(--blue);
+    font-size: var(--font-size-lg);
     cursor: pointer;
 }
 
@@ -115,9 +114,8 @@ nav {
     display: none;
 }
 
-/* Main CSs */
 .main {
-    height: 100vh;
+    /* height: 100vh; */
     padding-top: var(--nav-size);
     display: grid;
     place-items: center;
@@ -171,7 +169,7 @@ nav {
     border-radius: var(--border-radius);
     display: grid;
     place-items: center;
-    transform: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
     overflow: hidden;
     font-size: var(--font-size-lg);
     cursor: pointer;
@@ -209,7 +207,7 @@ nav {
     justify-content: space-between;
     padding: 30px 0;
     transform: translateX(100%);
-    transition: tranform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .main-game.active {
@@ -323,9 +321,16 @@ nav {
 .delete {
     background-color: var(--red);
     color: var(--white);
+    height: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    font-size: var(--font-size);
+    cursor: pointer;
 }
 
-.pause-screen {
+.pause-screen,
+.result-screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -338,15 +343,40 @@ nav {
     display: none;
 }
 
-.pause-screen.active {
+.pause-screen.active,
+.result-screen.active {
     display: flex;
 }
 
-.pause-screen > * + * {
+.pause-screen > * + *,
+.result-screen > * + * {
     margin-top: 20px;
 }
 
+.result-screen.active div {
+    animation: zoom-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 .pause-screen.active .btn {
+    animation: zoom-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-screen .congrate {
+    font-size: var(--font-size-xl);
+    color: var(--blue);
+}
+
+.result-screen .info {
+    color: var(--color-txt);
+    font-size: var(--font-size);
+}
+
+#result-time {
+    color: var(--blue);
+    font-size: var(--font-size-xl);
+}
+
+.zoom-in {
     animation: zoom-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -358,3 +388,57 @@ nav {
         transform: scale(1);
     }
 }
+
+.cell-err {
+    animation: zoom-out-shake 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoom-out-shake {
+    0% {
+        transform: scale(2);
+    }
+    25% {
+        transform: scale(2) rotate(30deg);
+    }
+    50% {
+        transform: scale(2) rotate(-30deg);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* @media only screen and (max-width: 800px) {
+    :root {
+        --nav-size: 50px;
+
+        --sudoku-cell-size: 30px;
+
+        --border-radius: 5px;
+
+        --space-y: 10px;
+
+        --gap: 2px;
+
+        --font-size: 1rem;
+        --font-size-lg: 1.5rem;
+        --font-size-xl: 2rem;
+    }
+
+    .input-name,
+    .btn {
+        height: 50px;
+    }
+
+    .main-grid-cell.hover {
+        border-width: 2px;
+    }
+
+    .screen {
+        min-width: unset;
+    }
+
+    .main {
+        height: 100vh;
+    }
+} */

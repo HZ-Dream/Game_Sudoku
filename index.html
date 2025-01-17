@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,9 +17,12 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- app css -->
     <link rel="stylesheet" href="./app.css">
+
 </head>
+
 <body>
-    <!-- Start Nav -->
+
+    <!-- top nav -->
     <nav>
         <div class="nav-container">
             <a href="#" class="nav-logo">
@@ -30,28 +34,26 @@
             </div>
         </div>
     </nav>
-    <!-- End Nav  -->
+    <!-- end top nav -->
 
-    <!-- Start Main -->
+    <!-- main -->
     <div class="main">
         <div class="screen">
-            <!-- Start sceen -->
+            <!-- start screen -->
             <div class="start-screen active" id="start-screen">
-                <input type="text" placeholder="Your Name" maxlength="12" class="input-name" id="input-name" spellcheck="false">
+                <input type="text" placeholder="Your name" maxlength="11" class="input-name" id="input-name">
                 <div class="btn" id="btn-level">
                     Easy
                 </div>
-                <div class="btn" id="btn-continue">
-                    Continue
-                </div>
-                <div class="btn btn-blue" id="btn-play">New Game</div>
+                <div class="btn" id="btn-continue">Continue</div>
+                <div class="btn btn-blue" id="btn-play">New game</div>
             </div>
-            <!-- End screen -->
+            <!-- end start screen -->
 
-            <!-- Start game screen -->
+            <!-- game screen -->
             <div class="main-game" id="game-screen">
-                <!-- 81 cells -->
                 <div class="main-sudoku-grid">
+                    <!-- 81 cells -->
                     <div class="main-grid-cell"></div>
                     <div class="main-grid-cell"></div>
                     <div class="main-grid-cell"></div>
@@ -134,7 +136,7 @@
                     <div class="main-grid-cell"></div>
                     <div class="main-grid-cell"></div>
                 </div>
-                
+
                 <div class="main-game-info">
                     <div class="main-game-info-box main-game-info-name">
                         <span id="player-name">Dream Rainn</span>
@@ -161,10 +163,10 @@
                     <div class="number">7</div>
                     <div class="number">8</div>
                     <div class="number">9</div>
-                    <div class="number delete" id="btn-delete">X</div>
+                    <div class="delete" id="btn-delete">X</div>
                 </div>
             </div>
-            <!-- End game screen -->
+            <!-- end game screen -->
 
             <!-- pause screen -->
             <div class="pause-screen" id="pause-screen">
@@ -172,11 +174,22 @@
                 <div class="btn" id="btn-new-game">New game</div>
             </div>
             <!-- end pause screen -->
+
+            <!-- result screen -->
+            <div class="result-screen" id="result-screen">
+                <div class="congrate">Completed</div>
+                <div class="info">Time</div>
+                <div id="result-time"></div>
+                <div class="btn" id="btn-new-game-2">New game</div>
+            </div>
+            <!-- end result screen -->
         </div>
     </div>
-    <!-- End Main -->
+    <!-- end main -->
+
     <script src="./js/constant.js"></script>
     <script src="./js/sudoku.js"></script>
     <script src="./js/app.js"></script>
 </body>
+
 </html>
