@@ -1,0 +1,91 @@
+/* Mobile & Tablet */
+@media (max-width: 63.9375em /* < 1023px */) {
+
+}
+
+/* Tablet */
+@media (min-width: 46.25em /* >= 740px */) and (max-width: 63.9375em /* <= 1023px */) {
+    .main {
+        height: 100vh;
+    }
+    
+    .screen {
+        height: 85%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 46.1875em /* <= 739px */) {
+    .screen {
+        height: auto;
+    }
+
+    .nav-container {
+        height: calc(var(--nav-size) + 20px);
+    }
+
+    .main-grid-cell {
+        width: 35px;
+    }
+
+    .numbers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-game {
+        margin-top: 150px;
+    }
+
+    .main-game-info-time {
+        padding-left: 0;
+    }
+}
+
+/* PC */
+@media (min-width: 64em /* >= 1024 */) {
+    .start-screen {
+        height: 60%;
+    }
+}
+
+/* Tablet & PC */
+@media (min-width: 46.25em /* >= 740px */) {
+    
+}
+
+/*
+@media only screen and (max-width: 800px) {
+    :root {
+        --nav-size: 50px;
+
+        --sudoku-cell-size: 30px;
+
+        --border-radius: 5px;
+
+        --space-y: 10px;
+
+        --gap: 2px;
+
+        --font-size: 1rem;
+        --font-size-lg: 1.5rem;
+        --font-size-xl: 2rem;
+    }
+
+    .input-name,
+    .btn {
+        height: 50px;
+    }
+
+    .main-grid-cell.hover {
+        border-width: 2px;
+    }
+
+    .screen {
+        min-width: unset;
+    }
+
+    .main {
+        height: 100vh;
+    }
+}
+*/
