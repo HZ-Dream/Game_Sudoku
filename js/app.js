@@ -25,6 +25,7 @@ const game_level = document.querySelector('#game-level');
 const game_time = document.querySelector('#game-time');
 
 const result_time = document.querySelector('#result-time');
+const result_title = document.querySelector('.result-title');
 
 let level_index = 0;
 let level = CONSTANT.LEVEL[level_index];
@@ -35,6 +36,8 @@ let seconds = 0;
 
 let su = undefined;
 let su_answer = undefined;
+
+let su_heathPoint = 3;
 
 let selected_cell = -1;
 
@@ -215,6 +218,16 @@ const checkErr = (value) => {
         addErr(cells[index + step]);
         step += 1;
     }
+
+    su_heathPoint -= 1;
+    checkHeathPoint();
+}
+
+const checkHeathPoint = () => {
+    if (su_heathPoint === 0) {
+        removeGameInfo();
+        showResult();
+    }
 }
 
 const removeErr = () => cells.forEach(e => e.classList.remove('err'));
@@ -240,7 +253,14 @@ const removeGameInfo = () => {
 const isGameWin = () => sudokuCheck(su_answer);
 
 const showResult = () => {
+    if(su_heathPoint === 0) {
+        result_title.innerHTML = 'You Lose';
+        result_title.classList.add('lose');
+    } else {
+        result_title.innerHTML = 'Completed';
+    }
     clearInterval(timer);
+    game_screen.classList.remove('active');
     result_screen.classList.add('active');
     result_time.innerHTML = showTime(seconds);
 }
@@ -315,6 +335,8 @@ const returnStartScreen = () => {
     clearInterval(timer);
     pause = false;
     seconds = 0;
+    removeErr();
+    su_heathPoint = 3;
     start_screen.classList.add('active');
     game_screen.classList.remove('active');
     pause_screen.classList.remove('active');
@@ -369,7 +391,6 @@ document.querySelector('#btn-new-game').addEventListener('click', () => {
 });
 
 document.querySelector('#btn-new-game-2').addEventListener('click', () => {
-    console.log('object')
     returnStartScreen();
 });
 

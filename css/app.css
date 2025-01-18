@@ -360,6 +360,10 @@ nav {
     display: flex;
 }
 
+.result-screen.active > .main-game {
+    display: none;
+}
+
 .pause-screen > * + *,
 .result-screen > * + * {
     margin-top: 20px;
@@ -373,9 +377,13 @@ nav {
     animation: zoom-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.result-screen .congrate {
+.result-screen .result-title {
     font-size: var(--font-size-xl);
     color: var(--blue);
+}
+
+.result-title.lose {
+    color: var(--red);
 }
 
 .result-screen .info {
