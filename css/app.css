@@ -28,7 +28,7 @@
     --bg-main: #2a2a38;
     --bg-body: #1a1a2e;
     --color-txt: #6a6a6a;
-    --filled-color: #4f4f63;
+    --filled-color: #fff;
     --filled-bg: #000;
 }
 
@@ -279,7 +279,15 @@ nav {
     gap: 10px;
 }
 
-.main-game-info-box {
+.main-game-info__ai {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.main-game-info-box,
+.main-game-info-box__ai {
     height: 45px;
     background-color: var(--bg-main);
     color: var(--color-txt);
@@ -290,12 +298,33 @@ nav {
     font-size: var(--font-size);
 }
 
+.main-game-info-box__ai:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    cursor: pointer;
+}
+
 .main-game-info-time {
     position: relative;
     align-items: center;
     justify-content: center;
     padding-left: 2rem;
     margin-bottom: auto;
+}
+
+.suggest-sudoku {
+    padding: 12px 0px 12px 12px;
+    text-align: right;
+}
+
+.suggest-sudoku i {
+    font-size: var(--font-size-lg);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.suggest-sudoku:hover i {
+    color: var(--blue);
 }
 
 .pause-btn {

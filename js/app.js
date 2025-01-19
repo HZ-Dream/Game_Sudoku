@@ -68,8 +68,10 @@ const showTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 
 const clearSudoku = () => {
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
         cells[i].innerHTML = '';
+        cells[i].setAttribute('data-value', 0);
         cells[i].classList.remove('filled');
         cells[i].classList.remove('selected');
+        cells[i].classList.remove('err');
     }
 }
 
@@ -113,15 +115,25 @@ const loadSudoku = () => {
 
     level_index = game.level;
 
+    su_heathPoint = game.su.heathPoint || 3;
+
     // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
         let row = Math.floor(i / CONSTANT.GRID_SIZE);
         let col = i % CONSTANT.GRID_SIZE;
         
         cells[i].setAttribute('data-value', su_answer[row][col]);
-        cells[i].innerHTML = su_answer[row][col] !== 0 ? su_answer[row][col] : '';
+        
+        if (su_answer[row][col] !== 0) {
+            cells[i].innerHTML = su_answer[row][col];
+        } else {
+            cells[i].innerHTML = '';
+        }
+
         if (su.question[row][col] !== 0) {
             cells[i].classList.add('filled');
+        } else {
+            cells[i].classList.remove('filled');
         }
     }
 }
@@ -188,39 +200,60 @@ const checkErr = (value) => {
     let box_start_row = row - row % 3;
     let box_start_col = col - col % 3;
 
+    let hasError = false; // Track if there's an actual error
+
     for (let i = 0; i < CONSTANT.BOX_SIZE; i++) {
         for (let j = 0; j < CONSTANT.BOX_SIZE; j++) {
             let cell = cells[9 * (box_start_row + i) + (box_start_col + j)];
-            if (!cell.classList.contains('selected')) addErr(cell);
+            if (!cell.classList.contains('selected') && 
+                parseInt(cell.getAttribute('data-value')) === value) {
+                hasError = true;
+                addErr(cell);
+            }
         }
     }
 
     let step = 9;
     while (index - step >= 0) {
-        addErr(cells[index - step]);
+        if (parseInt(cells[index - step].getAttribute('data-value')) === value) {
+            hasError = true;
+            addErr(cells[index - step]);
+        }
         step += 9;
     }
 
     step = 9;
     while (index + step < 81) {
-        addErr(cells[index + step]);
+        if (parseInt(cells[index + step].getAttribute('data-value')) === value) {
+            hasError = true;
+            addErr(cells[index + step]);
+        }
         step += 9;
     }
 
     step = 1;
     while (index - step >= 9*row) {
-        addErr(cells[index - step]);
+        if (parseInt(cells[index - step].getAttribute('data-value')) === value) {
+            hasError = true;
+            addErr(cells[index - step]);
+        }
         step += 1;
     }
 
     step = 1;
     while (index + step < 9*row + 9) {
-        addErr(cells[index + step]);
+        if (parseInt(cells[index + step].getAttribute('data-value')) === value) {
+            hasError = true;
+            addErr(cells[index + step]);
+        }
         step += 1;
     }
 
-    su_heathPoint -= 1;
-    checkHeathPoint();
+    if (hasError) {
+        su_heathPoint--;
+        saveGameInfo();
+        checkHeathPoint();
+    }
 }
 
 const checkHeathPoint = () => {
@@ -239,7 +272,8 @@ const saveGameInfo = () => {
         su: {
             original: su.original,
             question: su.question,
-            answer: su_answer
+            answer: su_answer,
+            heathPoint: su_heathPoint
         }
     }
     localStorage.setItem('game', JSON.stringify(game));

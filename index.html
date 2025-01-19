@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
     <!-- box icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- app css -->
     <link rel="stylesheet" href="./css/app.css">
@@ -53,6 +54,10 @@
 
             <!-- game screen -->
             <div class="main-game" id="game-screen">
+                <div class="suggest-sudoku solution-ai__short" id="btn-suggest__short">
+                    <i class="far fa-question-circle"></i>
+                </div>
+
                 <div class="main-sudoku-grid">
                     <!-- 81 cells -->
                     <div class="main-grid-cell"></div>
@@ -147,6 +152,15 @@
                     </div>
                 </div>
 
+                <div class="main-game-info__ai">
+                    <div class="main-game-info-box__ai solution-ai__1" id="btn-suggest__1">
+                        <span id="player-name">AI 1</span>
+                    </div>
+                    <div class="main-game-info-box__ai solution-ai__2" id="btn-suggest__2">
+                        <span id="game-level">AI 2</span>
+                    </div>
+                </div>
+
                 <div class="main-game-info-box main-game-info-time">
                     <span id="game-time">10:20</span>
                     <div class="pause-btn" id="btn-pause">
@@ -172,7 +186,7 @@
             <!-- pause screen -->
             <div class="pause-screen" id="pause-screen">
                 <div class="btn btn-blue" id="btn-resume">Resume</div>
-                <div class="btn" id="btn-new-game">New game</div>
+                <div class="btn" id="btn-new-game">Menu</div>
             </div>
             <!-- end pause screen -->
 
