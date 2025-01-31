@@ -312,6 +312,10 @@ nav {
     margin-bottom: auto;
 }
 
+.suggested {
+    color: red;
+}
+
 .suggest-sudoku {
     padding: 12px 0px 12px 12px;
     text-align: right;
