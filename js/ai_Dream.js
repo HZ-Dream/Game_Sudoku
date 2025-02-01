@@ -1,6 +1,3 @@
-const GRID_SIZE = 9;
-const BOX_SIZE = 3;
-
 // Hàm tạo bản sao sâu của grid
 const deepCopyGrid = (grid) => {
     return grid.map(row => [...row]);
@@ -8,18 +5,18 @@ const deepCopyGrid = (grid) => {
 
 // Hàm lấy danh sách các ô có thể điền số
 const getPossibleValues = (board, row, col) => {
-    let possible = new Set(Array.from({ length: GRID_SIZE }, (_, i) => i + 1));
+    let possible = new Set(Array.from({ length: CONSTANT.GRID_SIZE }, (_, i) => i + 1));
 
     // Loại bỏ số đã có trong hàng, cột và khối 3x3
-    for (let i = 0; i < GRID_SIZE; i++) {
+    for (let i = 0; i < CONSTANT.GRID_SIZE; i++) {
         possible.delete(board[row][i]); // Hàng
         possible.delete(board[i][col]); // Cột
     }
 
-    let boxStartRow = row - (row % BOX_SIZE);
-    let boxStartCol = col - (col % BOX_SIZE);
-    for (let i = 0; i < BOX_SIZE; i++) {
-        for (let j = 0; j < BOX_SIZE; j++) {
+    let boxStartRow = row - (row % CONSTANT.BOX_SIZE);
+    let boxStartCol = col - (col % CONSTANT.BOX_SIZE);
+    for (let i = 0; i < CONSTANT.BOX_SIZE; i++) {
+        for (let j = 0; j < CONSTANT.BOX_SIZE; j++) {
             possible.delete(board[boxStartRow + i][boxStartCol + j]);
         }
     }
@@ -28,8 +25,8 @@ const getPossibleValues = (board, row, col) => {
 
 // Hàm tìm ô trống tiếp theo
 const findEmptyCell = (board) => {
-    for (let row = 0; row < GRID_SIZE; row++) {
-        for (let col = 0; col < GRID_SIZE; col++) {
+    for (let row = 0; row < CONSTANT.GRID_SIZE; row++) {
+        for (let col = 0; col < CONSTANT.GRID_SIZE; col++) {
             if (board[row][col] === 0) return [row, col];
         }
     }
@@ -70,17 +67,22 @@ btnStart.addEventListener("click", () => {
         return;
     }
 
-    const solution = solveSudoku(su.question);
+    const solution = solveSudoku(su.answer);
     if (solution) {
         let updateCells = [];
 
         // Thu thập danh sách các ô cần cập nhật
-        for (let i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
-            let row = Math.floor(i / GRID_SIZE);
-            let col = i % GRID_SIZE;
+        for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
+            let row = Math.floor(i / CONSTANT.GRID_SIZE);
+            let col = i % CONSTANT.GRID_SIZE;
 
-            if (!cells[i].classList.contains('filled')) {
-                updateCells.push({ index: i, value: solution[row][col] });
+            if (!cells[i].classList.contains('filled') ) {
+                if( cells[i].textContent.trim() !== "" )  {
+                    continue;
+                }    
+                else {
+                    updateCells.push({ index: i, value: solution[row][col] });
+                }
             }
         }
 

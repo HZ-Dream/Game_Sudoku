@@ -323,8 +323,12 @@ nav {
 
 .suggest-sudoku i {
     font-size: var(--font-size-lg);
-    color: var(--white);
+    color: var(--black);
     cursor: pointer;
+}
+
+.dark .suggest-sudoku i {
+    color: var(--white);
 }
 
 .suggest-sudoku:hover i {

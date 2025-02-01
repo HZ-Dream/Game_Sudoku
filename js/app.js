@@ -438,6 +438,8 @@ document.querySelector('#btn-delete').addEventListener('click', () => {
     su_answer[row][col] = 0;
 
     removeErr();
+    
+    saveGameInfo();
 })
 // -------------
 
