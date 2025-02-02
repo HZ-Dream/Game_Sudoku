@@ -27,6 +27,8 @@ const game_time = document.querySelector('#game-time');
 const result_time = document.querySelector('#result-time');
 const result_title = document.querySelector('.result-title');
 
+const ai_ShortBtn = document.querySelector('.solution-ai__short');
+
 let level_index = 0;
 let level = CONSTANT.LEVEL[level_index];
 
@@ -38,6 +40,7 @@ let su = undefined;
 let su_answer = undefined;
 
 let su_heathPoint = 3;
+let su_helpPoint = 3;
 
 let selected_cell = -1;
 
@@ -116,6 +119,7 @@ const loadSudoku = () => {
     level_index = game.level;
 
     su_heathPoint = game.su.heathPoint || 3;
+    su_helpPoint = game.su_helpPoint || 3;
 
     // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
@@ -273,7 +277,8 @@ const saveGameInfo = () => {
             original: su.original,
             question: su.question,
             answer: su_answer,
-            heathPoint: su_heathPoint
+            heathPoint: su_heathPoint,
+            helpPoint: su_helpPoint
         }
     }
     localStorage.setItem('game', JSON.stringify(game));
@@ -371,6 +376,7 @@ const returnStartScreen = () => {
     seconds = 0;
     removeErr();
     su_heathPoint = 3;
+    su_helpPoint = 3;
     start_screen.classList.add('active');
     game_screen.classList.remove('active');
     pause_screen.classList.remove('active');
