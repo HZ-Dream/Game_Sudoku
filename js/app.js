@@ -118,8 +118,8 @@ const loadSudoku = () => {
 
     level_index = game.level;
 
-    su_heathPoint = game.su.heathPoint || 3;
-    su_helpPoint = game.su_helpPoint || 3;
+    su_heathPoint = su.heathPoint || 3;
+    su_helpPoint = su.helpPoint;
 
     // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
@@ -136,7 +136,7 @@ const loadSudoku = () => {
 
         if (su.question[row][col] !== 0) {
             cells[i].classList.add('filled');
-        } else {
+        } else if (su_answer[row][col] !== 0) {
             cells[i].classList.remove('filled');
         }
     }

@@ -60,6 +60,7 @@ const solveSudoku = (originalBoard) => {
 };
 
 const btnStart = document.querySelector("#btn-suggest__1");
+const tmpGame_Dream = JSON.parse(localStorage.getItem('game'))
 
 btnStart.addEventListener("click", () => {
     if (!su || !su.question) {
@@ -67,7 +68,8 @@ btnStart.addEventListener("click", () => {
         return;
     }
 
-    const solution = solveSudoku(su.answer);
+    const dream_Answer = tmpGame_Dream.su;
+    const solution = solveSudoku(dream_Answer.answer);
     if (solution) {
         let updateCells = [];
 
