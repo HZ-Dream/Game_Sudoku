@@ -1,4 +1,4 @@
-console.log("🔍 AI Back Tracking đã được tải...");
+console.log("AI Back Tracking đang giải hehe......");
 
 function getSudokuGrid() {
     let grid = [];
