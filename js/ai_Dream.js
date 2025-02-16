@@ -1,16 +1,13 @@
-// Hàm tạo bản sao sâu của grid
 const deepCopyGrid = (grid) => {
     return grid.map(row => [...row]);
 };
 
-// Hàm lấy danh sách các ô có thể điền số
 const getPossibleValues = (board, row, col) => {
     let possible = new Set(Array.from({ length: CONSTANT.GRID_SIZE }, (_, i) => i + 1));
 
-    // Loại bỏ số đã có trong hàng, cột và khối 3x3
     for (let i = 0; i < CONSTANT.GRID_SIZE; i++) {
-        possible.delete(board[row][i]); // Hàng
-        possible.delete(board[i][col]); // Cột
+        possible.delete(board[row][i]);
+        possible.delete(board[i][col]); 
     }
 
     let boxStartRow = row - (row % CONSTANT.BOX_SIZE);
@@ -23,7 +20,6 @@ const getPossibleValues = (board, row, col) => {
     return Array.from(possible);
 };
 
-// Hàm tìm ô trống tiếp theo
 const findEmptyCell = (board) => {
     for (let row = 0; row < CONSTANT.GRID_SIZE; row++) {
         for (let col = 0; col < CONSTANT.GRID_SIZE; col++) {
@@ -33,14 +29,12 @@ const findEmptyCell = (board) => {
     return null;
 };
 
-// Hàm giải Sudoku bằng Constraint Propagation + Backtracking
 const solveSudoku = (originalBoard) => {
-    // Tạo bản sao của board để không thay đổi board gốc
     const board = deepCopyGrid(originalBoard);
     
     const solve = (board) => {
         let emptyCell = findEmptyCell(board);
-        if (!emptyCell) return true; // Đã giải xong
+        if (!emptyCell) return true;
         
         let [row, col] = emptyCell;
         let possibleValues = getPossibleValues(board, row, col);
@@ -60,20 +54,19 @@ const solveSudoku = (originalBoard) => {
 };
 
 const btnStart = document.querySelector("#btn-suggest__1");
-const tmpGame_Dream = JSON.parse(localStorage.getItem('game'))
 
 btnStart.addEventListener("click", () => {
     if (!su || !su.question) {
         console.log("Không có Sudoku để giải!");
         return;
     }
-
+    
+    const tmpGame_Dream = JSON.parse(localStorage.getItem('game'))
     const dream_Answer = tmpGame_Dream.su;
     const solution = solveSudoku(dream_Answer.answer);
     if (solution) {
         let updateCells = [];
 
-        // Thu thập danh sách các ô cần cập nhật
         for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
             let row = Math.floor(i / CONSTANT.GRID_SIZE);
             let col = i % CONSTANT.GRID_SIZE;
@@ -90,7 +83,6 @@ btnStart.addEventListener("click", () => {
 
         let currentIndex = 0;
 
-        // Hiển thị từng ô một cách tuần tự
         const interval = setInterval(() => {
             if (currentIndex >= updateCells.length) {
                 clearInterval(interval);
@@ -103,7 +95,7 @@ btnStart.addEventListener("click", () => {
             cells[index].classList.add('suggested');
 
             currentIndex++;
-        }, 200); // Điều chỉnh thời gian delay theo ý muốn (200ms mỗi ô)
+        }, 200);
     } else {
         console.log("Không tìm thấy giải pháp!");
     }

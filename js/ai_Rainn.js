@@ -1,5 +1,3 @@
-console.log("AI Back Tracking đang giải hehe......");
-
 function getSudokuGrid() {
     let grid = [];
     let cells = document.querySelectorAll(".main-grid-cell");
