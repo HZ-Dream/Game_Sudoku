@@ -55,7 +55,7 @@ const initGameGrid = () => {
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE,2); i++) {
         let row = Math.floor(i/CONSTANT.GRID_SIZE);
         let col = i % CONSTANT.GRID_SIZE;
-        if (row === 2 || row === 5) cells[index].style.marginBottom = '10px';
+        if (row === 2 || row === 5) cells[index].style.marginBottom = '30px';
         if (col === 2 || col === 5) cells[index].style.marginRight = '10px';
 
         index++;
@@ -88,8 +88,6 @@ const initSudoku = () => {
 
     seconds = 0;
 
-    saveGameInfo();
-
     // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
         let row = Math.floor(i / CONSTANT.GRID_SIZE);
@@ -102,6 +100,8 @@ const initSudoku = () => {
             cells[i].innerHTML = su.question[row][col];
         }
     }
+
+    saveGameInfo();
 }
 
 const loadSudoku = () => {
@@ -361,6 +361,8 @@ const startGame = () => {
     game_level.innerHTML = CONSTANT.LEVEL_NAME[level_index];
 
     showTime(seconds);
+
+    saveGameInfo();
 
     timer = setInterval(() => {
         if (!pause) {
